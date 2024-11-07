@@ -88,17 +88,12 @@ app.post('/admin-signup', upload.single('Profile_Image'), async function (req, r
     const adminData = req.body;
     adminData.Profile_Image = req.file.filename;
     const adminEmail = await Admin_Model.findOne({ Email: adminData.Email });
-    const adminMobile = Admin_Model.findOne({ Mobile: adminData.Mobile });
+    
 
     if (adminEmail) {
       req.flash('error', 'Email already exist');
       return res.redirect('/admin-signup')
-    }
-
-    else if (adminMobile) {
-      req.flash('error', 'Mobile already exist');
-      return res.redirect('/admin-signup')
-    }
+    } 
 
     else if (adminData.Mobile.length !== 10) {
 
