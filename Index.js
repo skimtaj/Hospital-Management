@@ -95,11 +95,6 @@ app.post('/admin-signup', upload.single('Profile_Image'), async function (req, r
       return res.redirect('/admin-signup')
     } 
 
-    else if (adminData.Mobile.length !== 10) {
-
-      req.flash('error', 'Mobile number must be 10 charecters ');
-      return res.redirect('/admin-signup')
-    }
 
     else {
       const newAdminmodel = new Admin_Model(adminData);
